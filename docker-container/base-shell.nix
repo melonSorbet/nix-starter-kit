@@ -1,31 +1,21 @@
-{
-  description = "A GStreamer development flake";
+{ pkgs ? import <nixpkgs> {} }:
 
-  outputs = { self, nixpkgs }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-        bash = buildImage {
-                name = "bash";
-                tag = "latest";
-                copyToRoot = pkgs.buildEnv {
-                name = "image-root";
-                paths = [ pkgs.bashInteractive ];
-                pathsToLink = [ "/bin" ];
-            };
-            config = {
-                Cmd = [
-                  "nginx"
-                  "-c"
-                  nginxConf
-                ];
-                ExposedPorts = {
-                  "${nginxPort}/tcp" = { };
-                };
-          };
-        };
+pkgs.dockerTools.buildImage {
+  name = "interactive-bash-docker";
 
-
+    tag = "latest";
+    copyToRoot = pkgs.buildEnv {
+      name = "image-root";
+      paths = [ pkgs.bashInteractive ];
+      pathsToLink = [ "/bin" ];
     };
+
+  config = {
+    Cmd = [ "bash" ];
+
+    # Now the plugins are physically in /lib/gstreamer-1.0
+    Env = [
+      "GST_PLUGIN_PATH=/lib/gstreamer-1.0"
+    ];
+  };
 }

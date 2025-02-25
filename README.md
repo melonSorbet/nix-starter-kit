@@ -3,7 +3,7 @@ Nix Starter Kit is a comprehensive and beginner-friendly template-repo designed 
 
 ## Get Started
 Each Important and useful feature of Nix can be found here, each documenting how to setup, start and modify the respective feature:
-1. [Containers](/docker-container/README.md)
+1. [containers](/docker-container/README.md)
 2. [flakes](/flakes/README.md)
 3. [home-manager](/home-config/README.md)
 4. [nix-os-configuration](/nix-os/README.md)

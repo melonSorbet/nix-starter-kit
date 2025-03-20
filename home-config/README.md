@@ -1,3 +1,0 @@
-# Nix Home Manager
-
-## Introduction

@@ -1,3 +1,0 @@
-# Nix Shells
-
-## Introduction

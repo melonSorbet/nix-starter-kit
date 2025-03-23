@@ -4,3 +4,6 @@ version = "0.1.0"
 description = "cli tool to generate nix flakes, shells and configurations"
 license = "MIT"
 keywords = ["nix","cli"]
+
+[dependencies]
+clap = { version = "4.5.32", features = ["derive"] }
